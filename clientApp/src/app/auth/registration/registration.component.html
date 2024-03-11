@@ -1,0 +1,66 @@
+<div class="container">
+  <form [formGroup]="registrationForm" (ngSubmit)="register()">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" formControlName="FirstName" />
+      <mat-hint>Required</mat-hint>
+      <mat-error *ngIf="registrationForm.get('FirstName').hasError('required')">
+        First Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" formControlName="LastName" />
+      <mat-hint>Required</mat-hint>
+      <mat-error *ngIf="registrationForm.get('LastName').hasError('required')">
+        Last Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>User Name</mat-label>
+      <input matInput type="text" formControlName="UserName" />
+      <mat-hint>Required</mat-hint>
+      <mat-error *ngIf="registrationForm.get('UserName').hasError('required')">
+        User Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="Email" />
+      <mat-hint>Required</mat-hint>
+      <mat-error *ngIf="registrationForm.get('Email').hasError('email')">Email badly formatted.</mat-error>
+      <mat-error *ngIf="registrationForm.get('Email').hasError('required')"> Email is <strong>required</strong>.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="Password"/>
+      <mat-hint>Required. Min. 6 char.</mat-hint>
+      <mat-error *ngIf="registrationForm.get('Password').hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="registrationForm.get('Password').hasError('minlength')">
+        Password length has to be<strong> at least 6 character</strong>.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" formControlName="ConfirmPassword" [errorStateMatcher]="errorStateMatcher"/>
+      <mat-hint>Required</mat-hint>
+      <mat-error *ngIf="registrationForm.errors?.passwordsDoNotMatch && !registrationForm.get('ConfirmPassword').errors?.required">
+        Passwords do not match.
+      </mat-error>
+      <mat-error *ngIf="registrationForm.get('ConfirmPassword').errors?.required">
+        Confirm password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <button [disabled]="isLoading" type="submit" mat-flat-button color="primary">Register</button>
+  </form>
+</div>
+
+

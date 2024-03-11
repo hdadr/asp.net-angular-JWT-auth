@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span>Auth App</span>
+
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="authService.getUser() as user; else loggedIn">
+    <a mat-button routerLink="/guarded-component">Guarded-Component</a>
+    <button mat-button [matMenuTriggerFor]="menu">{{ user.userName }}</button>
+
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button mat-menu-item disabled>{{ 'Role: ' + user.roles.toString() }}</button>
+      <button mat-menu-item (click)="logOut()">Logout</button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-template #loggedIn>
+    <a mat-button routerLink="/guarded-component">Guarded-Component</a>
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button routerLink="/registration">Register</a>
+  </ng-template>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

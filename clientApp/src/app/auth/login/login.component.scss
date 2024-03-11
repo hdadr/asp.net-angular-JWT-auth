@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  min-width: 150px;
+  max-width: 400px;
+  width: 100%;
+}
+
+button {
+  max-width: 50%;
+  align-self: flex-end;
+}
+
+mat-form-field {
+  padding: 0.4rem 0;
+}
